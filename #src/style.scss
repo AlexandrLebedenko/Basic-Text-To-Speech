@@ -1,0 +1,37 @@
+@import "./reset.scss";
+$color-white: #e3e8ef;
+$color-black: #030616;
+$bg-color: #1c1b43;
+$text-styles: (
+  large-text: (
+    logo-size: 1.25rem,
+    font-weight: 400,
+    color: $color-white,
+  ),
+  body-text: (
+    font-size: 1rem,
+    font-weight: 400,
+    color: $color-white,
+  ),
+  small-text: (
+    font-size: 0.75rem,
+    font-weight: 400,
+    color: $color-white,
+  ),
+);
+@mixin text-format($type) {
+  font-size: map-get(map-get($text-styles, $type), font-size);
+  font-weight: map-get(map-get($text-styles, $type), font-weight);
+  color: map-get(map-get($text-styles, $type), color);
+}
+.wrapper {
+  min-height: 100vh;
+  min-width: 100%;
+  background-color: $bg-color;
+  font-family: "Outfit", sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
