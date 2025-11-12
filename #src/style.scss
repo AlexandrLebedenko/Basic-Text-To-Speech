@@ -1,11 +1,17 @@
 @import "./reset.scss";
 $color-white: #e3e8ef;
 $color-black: #030616;
+$color-gray: #677489;
+$color-dark-gray: #364153;
+$color-violet: #6326a2;
+$color-blue: #263fa9;
+$color-dark-blue: #2e5b84;
+$inputs-bg-color: #1e2a52;
 $bg-color: #1c1b43;
 $text-styles: (
-  large-text: (
+  logo-text: (
     logo-size: 1.25rem,
-    font-weight: 400,
+    font-weight: 500,
     color: $color-white,
   ),
   body-text: (
@@ -30,8 +36,100 @@ $text-styles: (
   background-color: $bg-color;
   font-family: "Outfit", sans-serif;
   display: flex;
-  flex-wrap: wrap;
+}
+.background-img-container {
+  height: 100vh;
+  min-width: 50%;
+  background-image: url(../img/hero-image-text-to-speech.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.container {
+  padding: 2rem;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.title {
+  @include text-format(logo-text);
+}
+.logo-box {
+  &__logo-img {
+    height: 100%;
+    width: 100%;
+  }
+}
+.textarea {
+  @include text-format(body-text);
+  height: 10.9375rem;
+  width: 100%;
+  padding: 1.25rem;
+  border: 2px solid $color-dark-blue;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: $inputs-bg-color;
+  resize: none;
+  &::placeholder {
+    @include text-format(body-text);
+  }
+}
+.description {
+  @include text-format(small-text);
+  margin-bottom: 2rem;
+}
+.settings {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  &__label {
+    @include text-format(small-text);
+    margin-bottom: -0.25rem;
+  }
+}
+.setting-group {
+  max-width: fit-content;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.75rem;
+  background-color: $inputs-bg-color;
+  &__label {
+    @include text-format(body-text);
+    &::after {
+      content: "";
+      border-right: 1px solid $color-gray;
+      margin: 0 0.5rem;
+    }
+  }
+}
+.radio-btn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.5rem;
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none; // полностью скрываем, но оставляем в DOM
+  }
+  &__label {
+    @include text-format(body-text);
+  }
+}
+.radio-btn--active {
+  background-color: $bg-color;
+}
+.button {
+  @include text-format(body-text);
+  width: 100%;
   padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+  background: linear-gradient(91deg, $color-violet 1.16%, $color-blue 100%);
+  box-shadow: 0px 4px 8px 0px rgba(28, 27, 67, 0.3);
 }
