@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -31,33 +31,47 @@
           <span class="settings__label">Settings</span>
           <div class="setting-group">
             <span class="setting-group__label">Voice:</span>
-            <!--  -->
-            <select id="voice-select">
-              <option value="en-US">en-US</option>
-              <option value="ru-RU">ru-RU</option>
-            </select>
-            <select id="voice-select">
-              <option value="Albert">Albert</option>
-              <option value="Lori">Lori</option>
-            </select>
-            <!--  -->
+            <div class="dropdown">
+              <button class="dropdown__toggle" data-toggle aria-haspopup="listbox" aria-expanded="false">
+                <span class="dropdown__toggle-text">en-US</span>
+                <img src="./img/vector.svg" alt="down arrow" aria-hidden="true" />
+              </button>
+              <!---->
+              <ul class="dropdown__menu" role="listbox">
+                <li class="dropdown__option" role="option" aria-selected="true">en-US</li>
+                <li class="dropdown__option" role="option">ru-RU</li>
+              </ul>
+            </div>
+            <div class="dropdown" data-dropdown>
+              <button class="dropdown__toggle" data-toggle aria-haspopup="listbox" aria-expanded="false">
+                <span class="dropdown__toggle-text">Albert</span>
+                <img src="./img/vector.svg" alt="down arrow" aria-hidden="true" />
+              </button>
+              <!---->
+              <ul class="dropdown__menu" role="listbox">
+                <li class="dropdown__option" role="option" data-value="albert" aria-selected="true">Albert</li>
+                <li class="dropdown__option" role="option" data-value="sophia">Sophia</li>
+                <li class="dropdown__option" role="option" data-value="michael">Michael</li>
+                <li class="dropdown__option" role="option" data-value="emma">Emma</li>
+              </ul>
+            </div>
           </div>
           <div class="setting-group">
             <span class="setting-group__label">Speed:</span>
             <label class="radio-btn radio-btn--active">
-              <input type="radio" name="speed" />
+              <input type="radio" name="speed" value="0.5" />
               <span class="radio-btn__label">0.5x</span>
             </label>
             <label class="radio-btn">
-              <input type="radio" name="speed" />
+              <input type="radio" name="speed" value="0.75" />
               <span class="radio-btn__label">0.75x</span>
             </label>
             <label class="radio-btn">
-              <input type="radio" name="speed" />
+              <input type="radio" name="speed" value="1" />
               <span class="radio-btn__label">1x</span>
             </label>
             <label class="radio-btn">
-              <input type="radio" name="speed" />
+              <input type="radio" name="speed" value="1.5" />
               <span class="radio-btn__label">1.5x</span>
             </label>
           </div>

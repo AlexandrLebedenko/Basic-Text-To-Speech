@@ -73,6 +73,7 @@ $text-styles: (
   margin-bottom: 0.5rem;
   background-color: $inputs-bg-color;
   resize: none;
+  scrollbar-color: $color-white #ffffff00;
   &::placeholder {
     @include text-format(body-text);
   }
@@ -106,6 +107,52 @@ $text-styles: (
     }
   }
 }
+.dropdown {
+  @include text-format(body-text);
+  position: relative;
+  display: inline-block;
+  &__toggle {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    min-width: 160px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    &[aria-expanded="true"] {
+      img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &__menu {
+    position: absolute;
+    top: 80%;
+    left: 0;
+    margin-top: 0.25rem;
+    padding: 1rem;
+    list-style: none;
+    border-radius: 6px;
+    z-index: 10;
+    width: 100%;
+    background-color: $inputs-bg-color;
+  }
+  &__option {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    &[aria-selected="true"] {
+      font-weight: 700;
+      text-decoration: underline;
+      background-color: $bg-color;
+      border-radius: 1rem;
+    }
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
 .radio-btn {
   padding: 0.5rem;
   border-radius: 0.5rem;
