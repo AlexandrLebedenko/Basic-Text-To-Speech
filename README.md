@@ -8,9 +8,9 @@
 
 ## <a id="general-info">⭐ General info</a>
 
-## <a id="Preview">🖼️ Preview</a>
-
 A minimal, browser-based text-to-speech tool. This project provides a simple interface to convert written text into spoken audio using the Web Speech API.
+
+## <a id="Preview">🖼️ Preview</a>
 
 <a style="font-size: 24px">https://alexandrlebedenko.github.io/Basic-Text-To-Speech/</a>
 
