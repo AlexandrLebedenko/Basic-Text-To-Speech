@@ -42,7 +42,7 @@ $text-styles: (
   min-width: 50%;
   background-image: url(../img/hero-image-text-to-speech.jpg);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 .container {
   padding: 2rem;
@@ -196,6 +196,6 @@ $text-styles: (
     display: none;
   }
   .container {
-    padding: 1rem;
+    padding: 0.8rem;
   }
 }
