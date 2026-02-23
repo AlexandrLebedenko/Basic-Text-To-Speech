@@ -1,24 +1,23 @@
 const speedOptions = document.querySelectorAll(".radio-btn");
 const mainButton = document.querySelector(".button");
 const dropdowns = document.querySelectorAll(".dropdown");
+const activeRadio = document.querySelector('.radio-btn--active input[type="radio"]');
+if (activeRadio) activeRadio.checked = true;
 speedOptions.forEach((option) => {
   option.addEventListener("click", () => {
     // Delete the active class for everyone elements
     speedOptions.forEach((el) => {
       el.classList.remove("radio-btn--active");
+      const radio = el.querySelector('input[type="radio"]');
+      if (radio) radio.checked = false;
     });
     // Add the active class to the current element
     option.classList.add("radio-btn--active");
-  });
-  const currentRadio = option.querySelector('input[type="radio"]');
-  if (currentRadio) {
+    const currentRadio = option.querySelector('input[type="radio"]');
     // Add the checked to the current element
-    currentRadio.checked = true;
-  }
+    if (currentRadio) currentRadio.checked = true;
+  });
 });
-
-// document.addEventListener("DOMContentLoaded", function () {});
-
 // Switch dropdown menu function
 function toggleMenu(dropdown, show) {
   const btn = dropdown.querySelector(".dropdown__toggle");
@@ -84,41 +83,40 @@ function getCurrentSpeaker() {
   const selectedOption = speakerDropdown.querySelector('.dropdown__option[aria-selected="true"]');
   return selectedOption.dataset.value;
 }
-////////
-////////
-////////
 const synth = window.speechSynthesis;
 let voices = [];
-
 function loadVoices() {
   voices = synth.getVoices();
 }
-
-// Событие срабатывает при изменении списка голосов (в т.ч. при первой загрузке)
+function findVoice(lang, speakerValue) {
+  if (voices.length === 0) return null;
+  let voice = voices.find((v) => v.lang === lang && v.name.toLowerCase().includes(speakerValue.toLowerCase()));
+  if (!voice) voice = voices.find((v) => v.lang === lang);
+  return voice || voices[0];
+}
+// The event is triggered when the list of votes changes (including during the first load)
 synth.onvoiceschanged = loadVoices;
-// Немедленный вызов на случай, если голоса уже готовы (некоторые браузеры)
+// Call immediately in case votes are ready (some browsers)
 loadVoices();
-
-// const recognition = new SpeechRecognition();
-
 mainButton.addEventListener("click", () => {
-  if (synth.speaking) {
-    synth.cancel();
-  }
-  // Get user input values
+  if (synth.speaking) synth.cancel();
   const text = getCurrentText();
-  const voice = getCurrentSpeaker();
-  const speed = getCurrentSpeed();
-  const language = getCurrentLanguage();
-  // Convert text to speech
   if (!text.trim()) {
     alert("Please enter some text.");
     return;
   }
-  const selectedVoice = findVoice(language, voice);
+  const language = getCurrentLanguage();
+  const speakerValue = getCurrentSpeaker();
+  const speed = parseFloat(getCurrentSpeed());
+  if (voices.length === 0) voices = synth.getVoices();
+  const selectedVoice = findVoice(language, speakerValue);
+  if (!selectedVoice) {
+    alert("No suitable voice found.");
+    return;
+  }
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.voice = selectedVoice;
-  utterance.lang = language; // обычно совпадает с voice.lang, но можно явно
+  utterance.lang = language;
   utterance.rate = speed;
   synth.speak(utterance);
 });
